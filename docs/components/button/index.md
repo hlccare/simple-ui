@@ -1,5 +1,10 @@
 # 按钮 - Button
 
-<HelloWorld></HelloWorld>
+:::demo
 
+```vue
+<HelloWorld></HelloWorld>
+```
+
+:::
 <Test></Test>
