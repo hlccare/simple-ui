@@ -7,7 +7,7 @@ export default defineComponent({
     const { type } = toRefs(props);
     return () => {
       return (
-        <button class={`sp-btn sp-btn--${type.value}`}>
+        <button class={`s-btn s-btn--${type.value}`}>
           {slots.default ? slots.default() : ""}
         </button>
       );
