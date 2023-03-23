@@ -3,5 +3,6 @@ import "./style.css";
 import App from "./App.vue";
 
 import "./index.scss";
+import SpUI from "./index";
 
-createApp(App).mount("#app");
+createApp(App).use(SpUI).mount("#app");

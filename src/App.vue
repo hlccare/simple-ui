@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { SpButton } from ".";
 import HelloWorld from "./components/HelloWorld.vue";
 import Test from "./components/Test";
 </script>
@@ -13,7 +14,12 @@ import Test from "./components/Test";
     </a>
   </div>
   <HelloWorld msg="Vite + Vue" />
-  <Test />
+  <Test>
+    <!-- <template #default>123 </template> -->
+    <template #title>456 </template>
+  </Test>
+  <SpButton>123</SpButton>
+  <SpButton type="primary">123</SpButton>
 </template>
 
 <style scoped>
