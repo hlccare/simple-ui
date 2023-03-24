@@ -12,6 +12,10 @@ export const buttonProps = {
     type: String as PropType<ButtonSize>,
     default: "medium",
   } as const,
+  disabled: {
+    type: Boolean,
+    default: false,
+  },
 };
 
 export type ButtonProps = ExtractPropTypes<typeof buttonProps>;
