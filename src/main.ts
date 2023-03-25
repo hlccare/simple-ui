@@ -3,6 +3,9 @@ import "./style.css";
 import App from "./App.vue";
 
 import "./index.scss";
-import SpUI from "./index";
+import SimpleUI from "./index";
 
-createApp(App).use(SpUI).mount("#app");
+// 使用全量导出
+// import SimpleUI from "../dist/simple-ui.esm.js";
+
+createApp(App).use(SimpleUI).mount("#app");
