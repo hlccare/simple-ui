@@ -12,7 +12,7 @@ export default defineComponent({
           disabled={disabled.value}
           class={`s-btn s-btn--${type.value} s-btn--${size.value} ${blockCls}`}
         >
-          {slots.default ? slots.default() : ""}
+          {slots.default ? slots.default() : "content"}
         </button>
       );
     };
