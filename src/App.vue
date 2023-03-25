@@ -17,7 +17,7 @@ import HelloWorld from "./components/HelloWorld.vue";
     <template #default>123 </template>
     <template #title>456 </template>
   </Test> -->
-  <SpButton type="primary" size="large">123</SpButton>
+  <SpButton type="primary" size="large" block>123</SpButton>
   <SpButton type="primary" size="medium">123</SpButton>
   <SpButton type="primary" size="small" disabled>123</SpButton>
 </template>

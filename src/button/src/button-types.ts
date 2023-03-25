@@ -16,6 +16,10 @@ export const buttonProps = {
     type: Boolean,
     default: false,
   },
+  block: {
+    type: Boolean,
+    default: false,
+  },
 };
 
 export type ButtonProps = ExtractPropTypes<typeof buttonProps>;
