@@ -1,11 +1,17 @@
-import { ensureDirSync } from "fs-extra";
+import { ensureDirSync, WriteFileOptions, writeFileSync } from "fs-extra";
 import * as path from "path";
 import { lightBlue, lightGreen } from "kolorist";
+import genCoreTemplate from "../template/core";
+import genTypesTemplate from "../template/types";
+import genStyleTemplate from "../template/style";
+import genTestTemplate from "../template/test";
 export interface ComponentMeta {
   name: string;
   title: string;
   category: string;
 }
+
+const WRITE_FILE_OPTIONS: WriteFileOptions = { encoding: "utf-8" };
 
 const createComponent = (meta: ComponentMeta) => {
   const { name } = meta;
@@ -22,6 +28,22 @@ const createComponent = (meta: ComponentMeta) => {
   ensureDirSync(srcDir);
   ensureDirSync(styleDir);
   ensureDirSync(testDir);
+
+  // 文件及内容
+  const coreFilePath = path.resolve(srcDir, name) + ".tsx";
+  writeFileSync(coreFilePath, genCoreTemplate(name), WRITE_FILE_OPTIONS);
+
+  // 组件类型文件
+  const typesFilePath = path.resolve(srcDir, name + "-type.ts");
+  writeFileSync(typesFilePath, genTypesTemplate(name), WRITE_FILE_OPTIONS);
+
+  // 组件样式文件
+  const styleFilePath = path.resolve(styleDir, `${meta.name}.scss`);
+  writeFileSync(styleFilePath, genStyleTemplate(name), WRITE_FILE_OPTIONS);
+
+  // 测试文件
+  const testFilePath = path.resolve(testDir, `${meta.name}.test.ts`);
+  writeFileSync(testFilePath, genTestTemplate(name), WRITE_FILE_OPTIONS);
 
   console.log(
     lightGreen(`

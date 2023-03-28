@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "node --loader ts-node/esm ./src/index.ts create",
-    "build": "tsc"
+    "dev": "tsc --watch",
+    "build": "tsc",
+    "cli": "npx tsc && node ./dist/src/index.js create"
   },
   "keywords": [],
   "author": "",
