@@ -12,10 +12,12 @@
   "license": "ISC",
   "dependencies": {
     "commander": "^10.0.0",
+    "fs-extra": "^11.1.1",
     "inquirer": "8.2.0",
     "kolorist": "^1.7.0"
   },
   "devDependencies": {
-    "@types/commander": "^2.12.2"
+    "@types/commander": "^2.12.2",
+    "@types/fs-extra": "^11.0.1"
   }
 }
