@@ -1,4 +1,4 @@
-import Theme from "vitepress/dist/client/theme-default";
+import Theme from "vitepress/dist/client/theme-default/index.js";
 
 import HelloWorld from "../../../src/components/HelloWorld.vue";
 import Test from "../../../src/components/Test";
@@ -8,6 +8,8 @@ import Test from "../../../src/components/Test";
 // demo组件
 import Demo from "vitepress-theme-demoblock/components/Demo.vue";
 import DemoBlock from "vitepress-theme-demoblock/components/DemoBlock.vue";
+import button from "../../../src/button/src/button";
+import "../../../src/index.scss";
 
 export default {
   ...Theme,
@@ -18,5 +20,6 @@ export default {
     app.component("Test", Test);
     app.component("Demo", Demo);
     app.component("DemoBlock", DemoBlock);
+    app.component("SButton", button);
   },
 };
