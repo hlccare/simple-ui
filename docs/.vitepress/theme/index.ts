@@ -9,6 +9,7 @@ import Test from "../../../src/components/Test";
 import Demo from "vitepress-theme-demoblock/components/Demo.vue";
 import DemoBlock from "vitepress-theme-demoblock/components/DemoBlock.vue";
 import button from "../../../src/button/src/button";
+import tree from "../../../src/tree/src/tree";
 import "../../../src/index.scss";
 
 export default {
@@ -21,5 +22,6 @@ export default {
     app.component("Demo", Demo);
     app.component("DemoBlock", DemoBlock);
     app.component("SButton", button);
+    app.component("STree", tree);
   },
 };

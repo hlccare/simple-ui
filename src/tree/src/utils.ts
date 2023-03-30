@@ -1,7 +1,7 @@
 import { IInnerTreeNode, ITreeNode } from "./tree-type";
 const generateInnerTree = (
   tree: ITreeNode[],
-  level = 0, // 当前节点层级
+  level = 1, // 当前节点层级
   path = [] as IInnerTreeNode[] // 递归路径，用于判断父节点
 ): IInnerTreeNode[] => {
   return tree.reduce((pre, cur) => {
