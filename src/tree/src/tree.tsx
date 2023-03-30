@@ -6,50 +6,46 @@ export default defineComponent({
   props: treeProps,
   setup(props: TreeProps) {
     const { data } = toRefs(props);
-    return () => {
-      const innerData = ref(generateInnerTree(data.value));
-      const toggleNode = (node: IInnerTreeNode) => {
-        console.log("toggle");
-        // 在原始列表中获取该节点
-        const cur = innerData.value.find((item) => item.id === node.id);
-        console.log(cur);
-        // cur ?? (cur.expanded = !cur.expanded);
-        // if (cur) {
+    const innerData = ref(generateInnerTree(data.value));
+    const toggleNode = (node: IInnerTreeNode) => {
+      // 在原始列表中获取该节点
+      const cur = innerData.value.find((item) => item.id === node.id);
+      if (cur) {
         cur.expanded = !cur.expanded;
-        // }
-      };
-      // 获取展开的节点列表
-      const expandedTree = computed(() => {
-        console.log("in expanded");
-        let excludedNodes: IInnerTreeNode[] = [];
-        const result = [];
+      }
+    };
+    // 获取展开的节点列表
+    const expandedTree = computed(() => {
+      let excludedNodes: IInnerTreeNode[] = [];
+      const result = [];
 
-        // 遍历列表，找出折叠的
-        for (const item of innerData.value) {
-          if (excludedNodes.includes(item)) {
-            continue;
-          }
-          if (!item.expanded) {
-            excludedNodes = [...excludedNodes, ...getChildren(item)];
-          }
-          result.push(item);
+      // 遍历列表，找出折叠的
+      for (const item of innerData.value) {
+        if (excludedNodes.includes(item)) {
+          continue;
         }
-        return result;
-      });
-      const getChildren = (node: IInnerTreeNode) => {
-        const result: Array<IInnerTreeNode> = [];
-        const startIndex = innerData.value.findIndex(
-          (item) => item.id === node.id
-        );
-        for (
-          let i = startIndex + 1;
-          i < innerData.value.length && node.level < innerData.value[i].level;
-          i++
-        ) {
-          result.push(innerData.value[i]);
+        if (!item.expanded) {
+          excludedNodes = [...excludedNodes, ...getChildren(item)];
         }
-        return result;
-      };
+        result.push(item);
+      }
+      return result;
+    });
+    const getChildren = (node: IInnerTreeNode) => {
+      const result: Array<IInnerTreeNode> = [];
+      const startIndex = innerData.value.findIndex(
+        (item) => item.id === node.id
+      );
+      for (
+        let i = startIndex + 1;
+        i < innerData.value.length && node.level < innerData.value[i].level;
+        i++
+      ) {
+        result.push(innerData.value[i]);
+      }
+      return result;
+    };
+    return () => {
       return (
         <div class="s-tree">
           {expandedTree.value.map((treeNode) => (
