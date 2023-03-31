@@ -8,48 +8,10 @@ const NODE_INDENT = 24;
 export default defineComponent({
   name: "STree",
   props: treeProps,
-  setup(props: TreeProps) {
-    const { data } = toRefs(props);
-    const innerData = ref(generateInnerTree(data.value));
-    const toggleNode = (node: IInnerTreeNode) => {
-      // 在原始列表中获取该节点
-      const cur = innerData.value.find((item) => item.id === node.id);
-      if (cur) {
-        cur.expanded = !cur.expanded;
-      }
-    };
-    // 获取展开的节点列表
-    const expandedTree = computed(() => {
-      let excludedNodes: IInnerTreeNode[] = [];
-      const result = [];
-
-      // 遍历列表，找出折叠的
-      for (const item of innerData.value) {
-        if (excludedNodes.includes(item)) {
-          continue;
-        }
-        if (!item.expanded) {
-          excludedNodes = [...excludedNodes, ...getChildren(item)];
-        }
-        result.push(item);
-      }
-      return result;
-    });
-    const getChildren = (node: IInnerTreeNode) => {
-      const result: Array<IInnerTreeNode> = [];
-      const startIndex = innerData.value.findIndex(
-        (item) => item.id === node.id
-      );
-      for (
-        let i = startIndex + 1;
-        i < innerData.value.length && node.level < innerData.value[i].level;
-        i++
-      ) {
-        result.push(innerData.value[i]);
-      }
-      return result;
-    };
-    const { expandedTree, toggleNode, getChildren } = useTree(data);
+  setup(props: TreeProps, { slots }) {
+    const { data, checkable } = toRefs(props);
+    const { expandedTree, toggleNode, getChildren, toggleCheckNode } =
+      useTree(data);
     return () => {
       return (
         <div class="s-tree">
@@ -72,6 +34,8 @@ export default defineComponent({
               {/** 折叠图标 */}
               {treeNode.isLeaf ? (
                 <span style={{ display: "inline-block", width: "25px" }}></span>
+              ) : slots.icon ? (
+                slots.icon({ nodeData: treeNode, toggleNode })
               ) : (
                 <svg
                   onClick={() => toggleNode(treeNode)}
@@ -91,7 +55,16 @@ export default defineComponent({
                   ></path>
                 </svg>
               )}
-              {treeNode.label}
+              {/* 复选框 */}
+              {checkable.value && (
+                <input
+                  type="checkbox"
+                  v-model={treeNode.checked}
+                  onClick={() => toggleCheckNode(treeNode)}
+                ></input>
+              )}
+              {/* 内容 */}
+              {slots.content ? slots.content(treeNode) : treeNode.label}
             </div>
           ))}
         </div>

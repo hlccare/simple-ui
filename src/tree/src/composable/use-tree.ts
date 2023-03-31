@@ -27,7 +27,7 @@ const useTree = (node: Ref<ITreeNode[]> | ITreeNode[]) => {
     }
     return result;
   });
-  const getChildren = (node: IInnerTreeNode) => {
+  const getChildren = (node: IInnerTreeNode, recursive = false) => {
     const result: Array<IInnerTreeNode> = [];
     const startIndex = innerData.value.findIndex((item) => item.id === node.id);
     for (
@@ -35,15 +35,41 @@ const useTree = (node: Ref<ITreeNode[]> | ITreeNode[]) => {
       i < innerData.value.length && node.level < innerData.value[i].level;
       i++
     ) {
-      result.push(innerData.value[i]);
+      if (recursive) {
+        result.push(innerData.value[i]);
+      } else if (node.level === innerData.value[i].level - 1) {
+        // 直接子节点
+        result.push(innerData.value[i]);
+      }
     }
     return result;
+  };
+  const toggleCheckNode = (node: IInnerTreeNode) => {
+    node.checked = !node.checked;
+    // 父子联动
+    // 更新子节点选中状态与父节点一致
+    getChildren(node).forEach((child) => {
+      child.checked = node.checked;
+    });
+    // 子父联动
+    // 获取父节点
+    const parentNode = innerData.value.find(
+      (item) => item.id === node.parentId
+    );
+    if (!parentNode) return;
+    const siblingNodes = getChildren(parentNode, false);
+    const checkedSiblingNodes = siblingNodes.filter((item) => item.checked);
+    if (checkedSiblingNodes.length === siblingNodes.length) {
+      // 所有兄弟节点均选中，父节点则选中
+      parentNode.checked = true;
+    }
   };
   return {
     innerData,
     toggleNode,
     expandedTree,
     getChildren,
+    toggleCheckNode,
   };
 };
 
