@@ -13,7 +13,7 @@ const useTree = (node: Ref<ITreeNode[]> | ITreeNode[]) => {
   // 获取展开的节点列表
   const expandedTree = computed(() => {
     let excludedNodes: IInnerTreeNode[] = [];
-    const result = [];
+    const result: IInnerTreeNode[] = [];
 
     // 遍历列表，找出折叠的
     for (const item of innerData.value) {
