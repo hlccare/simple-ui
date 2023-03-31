@@ -1,6 +1,10 @@
-import { computed, defineComponent, ref, toRefs } from "vue";
-import { IInnerTreeNode, TreeProps, treeProps } from "./tree-type";
-import generateInnerTree from "./utils";
+import { defineComponent, toRefs } from "vue";
+import useTree from "./composable/use-tree";
+import { TreeProps, treeProps } from "./tree-type";
+
+const NODE_HEIGHT = 28;
+const NODE_INDENT = 24;
+
 export default defineComponent({
   name: "STree",
   props: treeProps,
@@ -45,14 +49,26 @@ export default defineComponent({
       }
       return result;
     };
+    const { expandedTree, toggleNode, getChildren } = useTree(data);
     return () => {
       return (
         <div class="s-tree">
           {expandedTree.value.map((treeNode) => (
             <div
-              class="s-tree-node"
-              style={{ paddingLeft: `${24 * (treeNode.level - 1)}px` }}
+              class="s-tree-node hover:bg-slate-100 relative leading-8"
+              style={{ paddingLeft: `${NODE_INDENT * (treeNode.level - 1)}px` }}
             >
+              {/* 辅助线 */}
+              {!treeNode.isLeaf && treeNode.expanded && (
+                <span
+                  class="s-tree-node__vline absolute w-px bg-gray-300"
+                  style={{
+                    height: `${NODE_HEIGHT * getChildren(treeNode).length}px`,
+                    left: `${NODE_INDENT * (treeNode.level - 1) + 12}px`,
+                    top: `${NODE_HEIGHT}px`,
+                  }}
+                ></span>
+              )}
               {/** 折叠图标 */}
               {treeNode.isLeaf ? (
                 <span style={{ display: "inline-block", width: "25px" }}></span>
