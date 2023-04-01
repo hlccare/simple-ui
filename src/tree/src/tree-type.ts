@@ -9,6 +9,10 @@ export const treeProps = {
     type: Boolean,
     default: false,
   },
+  operable: {
+    type: Boolean,
+    default: false,
+  },
 } as const;
 
 export type TreeProps = ExtractPropTypes<typeof treeProps>;

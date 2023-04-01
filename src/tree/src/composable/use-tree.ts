@@ -1,4 +1,5 @@
 import { computed, Ref, ref, unref } from "vue";
+import { randomId } from "../../../shared/utils";
 import generateInnerTree from "../utils";
 import { IInnerTreeNode, ITreeNode } from "./../tree-type";
 const useTree = (node: Ref<ITreeNode[]> | ITreeNode[]) => {
@@ -64,12 +65,55 @@ const useTree = (node: Ref<ITreeNode[]> | ITreeNode[]) => {
       parentNode.checked = true;
     }
   };
+
+  const getIndex = (node: IInnerTreeNode) => {
+    if (!node) return -1;
+    return innerData.value.findIndex((item) => item.id === node.id);
+  };
+
+  const append = (parent: IInnerTreeNode, node: IInnerTreeNode) => {
+    const children = getChildren(parent, false);
+    const lastChild = children[children.length - 1];
+    let insertedIndex = getIndex(parent) + 1;
+    if (lastChild) {
+      insertedIndex = getIndex(lastChild) + 1;
+    }
+    // parent节点设置展开，且非叶子节点
+    parent.expanded = true;
+    parent.isLeaf = false;
+
+    // 新增节点初始化
+    const currentNode = ref({
+      ...node,
+      level: parent.level + 1,
+      parentId: parent.id,
+      isLeaf: true,
+    });
+
+    // 设置新增节点ID
+    if (currentNode.value.id === undefined) {
+      currentNode.value.id = randomId();
+    }
+
+    // 插入
+    innerData.value.splice(insertedIndex, 0, currentNode.value);
+  };
+
+  const remove = (node: IInnerTreeNode) => {
+    const childrenIds = getChildren(node).map((item) => item.id);
+    // 过滤掉该节点及其子节点
+    innerData.value = innerData.value.filter(
+      (item) => ![...childrenIds, node.id].includes(item.id)
+    );
+  };
   return {
     innerData,
     toggleNode,
     expandedTree,
     getChildren,
     toggleCheckNode,
+    append,
+    remove,
   };
 };
 

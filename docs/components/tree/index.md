@@ -241,3 +241,33 @@ const data = ref([
 ```
 
 :::
+
+:::demo
+
+```vue
+<template>
+  <STree :data="data" operable></STree>
+</template>
+<script setup>
+import { ref } from "vue";
+
+const data = ref([
+  {
+    label: "node 1",
+    id: "node-1",
+    children: [
+      {
+        label: "node 1-1",
+        id: "node-1-1",
+      },
+    ],
+  },
+  {
+    label: "node 2",
+    id: "node-2",
+  },
+]);
+</script>
+```
+
+:::
