@@ -1,9 +1,11 @@
-import { IUseCore, IUserCheck } from "./use-tree-types";
+import { IUseCore, IUseLazyLoad, IUserCheck } from "./use-tree-types";
 import { IInnerTreeNode } from "../tree-type";
-import { Ref } from "vue";
+import { Ref, SetupContext } from "vue";
 export const useCheck = (
   innerData: Ref<IInnerTreeNode[]>,
-  core: IUseCore
+  core: IUseCore,
+  context: SetupContext,
+  lazyLoad: IUseLazyLoad
 ): IUserCheck => {
   const toggleCheckNode = (node: IInnerTreeNode) => {
     node.checked = !node.checked;

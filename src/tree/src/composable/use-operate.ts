@@ -1,10 +1,12 @@
-import { IUseCore, IUserOperate } from "./use-tree-types";
+import { IUseCore, IUseLazyLoad, IUserOperate } from "./use-tree-types";
 import { IInnerTreeNode } from "../tree-type";
-import { ref, Ref } from "vue";
+import { ref, Ref, SetupContext } from "vue";
 import { randomId } from "../../../shared/utils";
 export const useOperate = (
   innerData: Ref<IInnerTreeNode[]>,
-  core: IUseCore
+  core: IUseCore,
+  context: SetupContext,
+  lazyLoad: IUseLazyLoad
 ): IUserOperate => {
   const append = (parent: IInnerTreeNode, node: IInnerTreeNode) => {
     const children = core.getChildren(parent, false);

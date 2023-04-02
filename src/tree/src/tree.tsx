@@ -1,4 +1,4 @@
-import { defineComponent, provide, toRefs } from "vue";
+import { defineComponent, provide, SetupContext, toRefs } from "vue";
 import useTree from "./composable/use-tree";
 import { TreeProps, treeProps } from "./tree-type";
 import STreeNode from "./components/tree-node";
@@ -7,9 +7,11 @@ import STreeNodeToggle from "./components/tree-node-toggle";
 export default defineComponent({
   name: "STree",
   props: treeProps,
-  setup(props: TreeProps, { slots }) {
+  emits: ["lazy-load"],
+  setup(props: TreeProps, context: SetupContext) {
     const { data } = toRefs(props);
-    const treeData = useTree(data);
+    const { slots } = context;
+    const treeData = useTree(data, context);
     provide("TREE_UTILS", treeData);
     return () => {
       return (

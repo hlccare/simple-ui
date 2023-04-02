@@ -17,7 +17,9 @@ const generateInnerTree = (
       return pre.concat(o, children);
     } else {
       // 叶子节点
-      o.isLeaf = true;
+      // 懒加载情况下，isLeaf设置为false，此处不处理
+      // 若未初始化，则设置为true
+      if (o.isLeaf === undefined) o.isLeaf = true;
       return pre.concat(o);
     }
   }, [] as IInnerTreeNode[]);
