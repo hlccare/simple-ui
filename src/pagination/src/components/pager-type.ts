@@ -1,6 +1,6 @@
 import { ExtractPropTypes, PropType } from "vue";
 
-export const paginationProps = {
+export const pagerProps = {
   total: {
     type: Number,
     default: 0,
@@ -15,4 +15,4 @@ export const paginationProps = {
   },
 } as const;
 
-export type PaginationProps = ExtractPropTypes<typeof paginationProps>;
+export type PagerProps = ExtractPropTypes<typeof pagerProps>;
