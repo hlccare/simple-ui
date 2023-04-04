@@ -1,6 +1,9 @@
 .s-pagination {
   /* component style */
   display: flex;
+  button[disabled] {
+    cursor: not-allowed;
+  }
   .s-pager {
     margin: 0;
     list-style: none;

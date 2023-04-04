@@ -13,6 +13,10 @@ export const paginationProps = {
     tppe: Number,
     default: 7,
   },
+  modelValue: {
+    type: Number,
+    default: 1,
+  },
 } as const;
 
 export type PaginationProps = ExtractPropTypes<typeof paginationProps>;
