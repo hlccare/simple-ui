@@ -2,6 +2,7 @@ import Theme from "vitepress/dist/client/theme-default/index.js";
 
 import HelloWorld from "../../../src/components/HelloWorld.vue";
 import Test from "../../../src/components/Test";
+import "vitepress-theme-demoblock/theme/styles/index.css";
 // import { HelloWorld, Test } from "../../../src/entry";
 // 主题样式
 // import "vitepress-theme-demoblock/theme/styles/index.css";

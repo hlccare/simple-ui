@@ -35,8 +35,8 @@ const config = {
       md.use(demoBlockPlugin, {
         scriptReplaces: [
           {
-            searchValue: /import { ref } from "vue";/g,
-            replaceValue: "const { ref } = Vue;",
+            searchValue: /import ({.*}) from "vue"/g,
+            replaceValue: (s, s1) => `const ${s1} = Vue`,
           },
         ],
       });
