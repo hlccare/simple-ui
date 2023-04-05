@@ -1,0 +1,13 @@
+.s-form__item {
+  &--horizontal {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  &--vertical {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+}

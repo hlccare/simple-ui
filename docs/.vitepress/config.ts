@@ -10,7 +10,15 @@ const sidebar = {
       text: "反馈",
       items: [{ text: "Pagination 分页", link: "/components/pagination/" }],
     },
-    { text: "数据录入", items: [] },
+    {
+      text: "数据录入",
+      items: [
+        {
+          text: "Form 表单",
+          link: "/components/form/",
+        },
+      ],
+    },
     {
       text: "数据展示",
       items: [

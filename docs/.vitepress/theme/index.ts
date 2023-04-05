@@ -12,6 +12,8 @@ import DemoBlock from "vitepress-theme-demoblock/components/DemoBlock.vue";
 import button from "../../../src/button/src/button";
 import tree from "../../../src/tree/src/tree";
 import pagination from "../../../src/pagination/src/pagination";
+//导入组件库
+import SimpleUI from "../../../scripts/entry";
 import "../../../src/index.scss";
 
 export default {
@@ -19,6 +21,7 @@ export default {
   // 扩展应用程序实例
   enhanceApp({ app }) {
     // 注册组件
+    app.use(SimpleUI);
     app.component("HelloWorld", HelloWorld);
     app.component("Test", Test);
     app.component("Demo", Demo);
