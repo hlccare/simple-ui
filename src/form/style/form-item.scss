@@ -10,4 +10,37 @@
     flex-direction: column;
     margin-bottom: 20px;
   }
+
+  .s-form__label {
+    align-self: flex-start;
+    font-size: 14px;
+
+    &--vertical {
+      padding-bottom: 8px;
+    }
+
+    &--sm {
+      flex: 0 0 60px;
+    }
+
+    &--md {
+      flex: 0 0 80px;
+    }
+
+    &--lg {
+      flex: 0 0 130px;
+    }
+
+    &--start {
+      text-align: left;
+    }
+
+    &--center {
+      text-align: center;
+    }
+
+    &--end {
+      text-align: end;
+    }
+  }
 }

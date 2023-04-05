@@ -6,6 +6,8 @@ export default defineComponent({
   setup(props: FormProps, { slots }) {
     const labelData = computed(() => ({
       layout: props.layout,
+      labelSize: props.labelSize,
+      labelAlign: props.labelAlign,
     }));
     provide("LABEL_DATA", labelData);
     return () => {
