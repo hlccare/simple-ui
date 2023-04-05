@@ -1,5 +1,5 @@
 import { computed, defineComponent, provide } from "vue";
-import { FormProps, formProps } from "./form-type";
+import { FormProps, formContextToken, formProps } from "./form-type";
 export default defineComponent({
   name: "SForm",
   props: formProps,
@@ -10,6 +10,10 @@ export default defineComponent({
       labelAlign: props.labelAlign,
     }));
     provide("LABEL_DATA", labelData);
+    provide(formContextToken, {
+      model: props.model,
+      rules: props.rules,
+    });
     return () => {
       return <div class="s-form">{slots.default()}</div>;
     };
