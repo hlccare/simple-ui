@@ -8,7 +8,13 @@ const sidebar = {
     { text: "导航", items: [] },
     {
       text: "反馈",
-      items: [{ text: "Pagination 分页", link: "/components/pagination/" }],
+      items: [
+        { text: "Pagination 分页", link: "/components/pagination/" },
+        {
+          text: "Modal 模态框",
+          link: "/components/modal/",
+        },
+      ],
     },
     {
       text: "数据录入",

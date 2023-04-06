@@ -2,9 +2,10 @@ import { App } from "vue";
 import ButtonPlugin, { Button } from "../src/button";
 import FormPlugin, { Form } from "../src/form";
 import InputPlugin, { Input } from "../src/input";
-export { Button, Form, Input };
+import ModalPlugin, { Modal } from "../src/modal";
+export { Button, Form, Input, Modal };
 
-const installs = [ButtonPlugin, FormPlugin, InputPlugin];
+const installs = [ButtonPlugin, FormPlugin, InputPlugin, ModalPlugin];
 
 export default {
   install(app: App) {
