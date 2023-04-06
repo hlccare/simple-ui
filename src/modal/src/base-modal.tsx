@@ -17,7 +17,7 @@ export default defineComponent({
           <div class="s-base-modal">
             {/* 透明遮罩 */}
             <div
-              className="s-base-model__mask"
+              className="s-base-modal__mask"
               onClick={() => emit("update:modelValue", false)}
             ></div>
             {/* 具体内容 */}
