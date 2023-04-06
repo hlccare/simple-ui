@@ -1,5 +1,6 @@
 import { ExtractPropTypes, InjectionKey, PropType } from "vue";
 import type { Rules } from "async-validator";
+import { FormItemContext } from "./form-item-type";
 export type Layout = "horizontal" | "vertical";
 export type LabelSize = "sm" | "md" | "lg";
 export type LabelAlign = "start" | "center" | "end";
@@ -30,7 +31,9 @@ export type FormProps = ExtractPropTypes<typeof formProps>;
 
 export type FormContext = {
   model: any;
-  rules: Rules;
+  rules?: Rules;
+  addItem: (item: FormItemContext) => void;
+  removeItem: (item: FormItemContext) => void;
 };
 
 export const formContextToken: InjectionKey<FormContext> =
