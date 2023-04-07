@@ -3,9 +3,16 @@ import ButtonPlugin, { Button } from "../src/button";
 import FormPlugin, { Form } from "../src/form";
 import InputPlugin, { Input } from "../src/input";
 import ModalPlugin, { Modal } from "../src/modal";
-export { Button, Form, Input, Modal };
+import TabsPlugin, { Tabs } from "../src/tab";
+export { Button, Form, Input, Modal, Tabs };
 
-const installs = [ButtonPlugin, FormPlugin, InputPlugin, ModalPlugin];
+const installs = [
+  ButtonPlugin,
+  FormPlugin,
+  InputPlugin,
+  ModalPlugin,
+  TabsPlugin,
+];
 
 export default {
   install(app: App) {
