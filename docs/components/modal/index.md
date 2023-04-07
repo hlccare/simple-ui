@@ -6,7 +6,7 @@
 <template>
   <s-button @click="open">打开模态框</s-button>
 
-  <s-modal v-model="visible" title="小贴士">
+  <s-modal v-model="visible" title="小贴士" center alignCenter>
     <span>这是一条消息！</span>
     <template #footer>
       <div class="dialog-footer">

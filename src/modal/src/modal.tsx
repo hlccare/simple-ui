@@ -7,19 +7,38 @@ export default defineComponent({
   props: modalProps,
   emits: ["update:modelValue"],
   setup(props: ModalProps, { slots, emit }) {
-    const { modelValue, title, showClose, width } = toRefs(props);
+    const { modelValue, title, showClose, width, center, alignCenter } =
+      toRefs(props);
+
+    const alignCenterStyle = alignCenter.value
+      ? {
+          marginTop: 0,
+          top: "50%",
+          transform: "translateY(-50%)",
+        }
+      : null;
     return () => (
       <BaseModal
         class="s-modal"
         modelValue={modelValue.value}
         onUpdate:modelValue={() => emit("update:modelValue")}
       >
-        <div class="s-modal__container" style={{ width: width.value }}>
+        <div
+          class="s-modal__container"
+          style={{ width: width.value, ...alignCenterStyle }}
+        >
           {/* 标题 */}
           {slots.header ? (
-            slots.header()
+            slots.header({
+              close: () => {
+                emit("update:modelValue", false);
+              },
+            })
           ) : (
-            <div class="s-modal__header">
+            <div
+              class="s-modal__header"
+              style={{ textAlign: center.value ? "center" : "left" }}
+            >
               {title.value}
               {/* 关闭按钮 */}
               {showClose.value && (
