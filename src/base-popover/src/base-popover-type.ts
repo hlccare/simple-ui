@@ -1,4 +1,4 @@
-import { ExtractPropTypes, PropType } from "vue";
+import { DefineComponent, ExtractPropTypes, PropType } from "vue";
 
 export const basePopoverProps = {
   modelValue: {
@@ -6,8 +6,12 @@ export const basePopoverProps = {
     default: false,
   },
   host: {
-    type: Object as PropType<HTMLElement>,
+    type: Object as PropType<HTMLElement | DefineComponent>,
     default: () => null,
+  },
+  showArrow: {
+    type: Boolean,
+    default: false,
   },
 } as const;
 
