@@ -17,8 +17,9 @@
     "build:components": "node ./scripts/build.cjs"
   },
   "dependencies": {
-    "vue": "^3.2.37",
-    "async-validator": "^4.2.5"
+    "@floating-ui/dom": "^1.2.6",
+    "async-validator": "^4.2.5",
+    "vue": "^3.2.37"
   },
   "devDependencies": {
     "@testing-library/vue": "^6.6.1",
