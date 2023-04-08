@@ -7,7 +7,7 @@ export default defineComponent({
   props: basePopoverProps,
   emits: ["update:modelValue"],
   setup(props: BasePopoverProps, { slots, attrs }) {
-    const { host, modelValue, showArrow } = toRefs(props);
+    const { host, modelValue, showArrow, placement } = toRefs(props);
     const hostRef =
       host.value instanceof HTMLElement ? host.value : host.value.$el;
 
@@ -22,17 +22,34 @@ export default defineComponent({
       }
       computePosition(hostRef, overlayRef.value, {
         middleware,
-      }).then(({ x, y, middlewareData }) => {
+        placement: placement.value || "bottom",
+      }).then(({ x, y, middlewareData, placement }) => {
         Object.assign(overlayRef.value.style, {
           left: x + "px",
           top: y + "px",
         });
         if (showArrow.value) {
+          const { x: arrowX, y: arrowY } = middlewareData.arrow;
+
+          // 需要隐藏的第一条边
+          const currentSide = placement.split("-")[0];
+          // 箭头定位位置
+          const targetSide = {
+            top: "bottom",
+            right: "left",
+            bottom: "top",
+            left: "right",
+          }[currentSide];
+          const SIDE = ["top", "right", "bottom", "left"];
+          const prevIndex = SIDE.indexOf(currentSide) - 1;
+          // 需要隐藏的另一条边
+          const anotherSide = SIDE[prevIndex < 0 ? prevIndex + 4 : prevIndex];
           Object.assign(arrowRef.value.style, {
-            left: middlewareData.arrow?.x + "px",
-            top: "-4px",
-            "border-bottom-color": "transparent",
-            "border-right-color": "transparent",
+            left: arrowX + "px",
+            top: arrowY + "px",
+            [targetSide]: "-4px",
+            [`border-${currentSide}-color`]: "transparent",
+            [`border-${anotherSide}-color`]: "transparent",
           });
         }
       });
@@ -49,7 +66,6 @@ export default defineComponent({
         immediate: true,
       }
     );
-
     return () => (
       <>
         {modelValue.value && (
