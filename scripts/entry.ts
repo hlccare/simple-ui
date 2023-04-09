@@ -4,7 +4,8 @@ import FormPlugin, { Form } from "../src/form";
 import InputPlugin, { Input } from "../src/input";
 import ModalPlugin, { Modal } from "../src/modal";
 import TabsPlugin, { Tabs } from "../src/tab";
-export { Button, Form, Input, Modal, Tabs };
+import PopoverPlugin, { Popover } from "../src/popover";
+export { Button, Form, Input, Modal, Tabs, Popover };
 
 const installs = [
   ButtonPlugin,
@@ -12,6 +13,7 @@ const installs = [
   InputPlugin,
   ModalPlugin,
   TabsPlugin,
+  PopoverPlugin,
 ];
 
 export default {

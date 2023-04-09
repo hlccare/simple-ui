@@ -17,6 +17,10 @@ const sidebar = {
           text: "Modal 模态框",
           link: "/components/modal/",
         },
+        {
+          text: "Popover 弹出框",
+          link: "/components/popover/",
+        },
       ],
     },
     {
