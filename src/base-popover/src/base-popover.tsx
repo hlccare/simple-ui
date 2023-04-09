@@ -1,6 +1,18 @@
-import { defineComponent, nextTick, ref, toRefs, watch } from "vue";
+import {
+  defineComponent,
+  nextTick,
+  onUnmounted,
+  ref,
+  toRefs,
+  watch,
+} from "vue";
 import { BasePopoverProps, basePopoverProps } from "./base-popover-type";
-import { computePosition, arrow, offset } from "@floating-ui/dom";
+import {
+  computePosition,
+  arrow,
+  offset,
+  autoPlacement,
+} from "@floating-ui/dom";
 import "../style/base-popover.scss";
 export default defineComponent({
   name: "SBasePopover",
@@ -14,11 +26,16 @@ export default defineComponent({
     const overlayRef = ref();
     const arrowRef = ref();
 
+    // 更新箭头位置
     const updatePosition = () => {
       const middleware = [];
       if (showArrow.value) {
         middleware.push(offset(8));
         middleware.push(arrow({ element: arrowRef.value }));
+      }
+      // 无指定placement，添加autoPlacement中间件
+      if (!placement.value) {
+        middleware.push(autoPlacement());
       }
       computePosition(hostRef, overlayRef.value, {
         middleware,
@@ -55,17 +72,39 @@ export default defineComponent({
       });
     };
 
+    // 注册回调，更新位置
+    const mutationObserver = new MutationObserver(() => updatePosition());
+
+    // 观察modelValue
     watch(
       modelValue,
       (newVal) => {
         if (newVal) {
           nextTick(updatePosition);
+          // 观察hostRef的尺寸变化
+          hostRef.value &&
+            mutationObserver.observe(hostRef, { attributes: true });
+          // 监听resize和scroll
+          window.addEventListener("resize", updatePosition);
+          window.addEventListener("scroll", updatePosition);
+        } else {
+          // 隐藏时取消所有监听
+          mutationObserver.disconnect();
+          window.removeEventListener("resize", updatePosition);
+          window.removeEventListener("scroll", updatePosition);
         }
       },
       {
         immediate: true,
       }
     );
+
+    // 移除时取消监听
+    onUnmounted(() => {
+      mutationObserver.disconnect();
+      window.removeEventListener("resize", updatePosition);
+      window.removeEventListener("scroll", updatePosition);
+    });
     return () => (
       <>
         {modelValue.value && (
