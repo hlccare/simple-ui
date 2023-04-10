@@ -10,7 +10,7 @@ export const paginationProps = {
     default: 10,
   },
   pagerCount: {
-    tppe: Number,
+    type: Number,
     default: 7,
   },
   modelValue: {

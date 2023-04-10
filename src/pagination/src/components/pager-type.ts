@@ -10,7 +10,7 @@ export const pagerProps = {
     default: 10,
   },
   pagerCount: {
-    tppe: Number,
+    type: Number,
     default: 7,
   },
 } as const;
