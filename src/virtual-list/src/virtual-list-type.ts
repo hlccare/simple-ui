@@ -5,6 +5,10 @@ export const virtualListProps = {
     type: Array,
     required: true,
   },
+  itemHeight: {
+    type: Number,
+    default: 24,
+  },
 } as const;
 
 export type VirtualListProps = ExtractPropTypes<typeof virtualListProps>;
