@@ -13,6 +13,13 @@ export const treeProps = {
     type: Boolean,
     default: false,
   },
+  height: {
+    type: Number,
+  },
+  itemHeight: {
+    type: Number,
+    default: 30,
+  },
 } as const;
 
 export type TreeProps = ExtractPropTypes<typeof treeProps>;
