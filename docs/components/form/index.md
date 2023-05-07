@@ -1,5 +1,9 @@
 # 表单
 
+### 基础用法
+
+设置`model`为数据模型
+
 :::demo
 
 ```vue
@@ -20,6 +24,10 @@ const model = ref({
 ```
 
 :::
+
+### 表单布局
+
+`horizontal`布局下，可设置` label-size``label-align `
 
 :::demo
 
@@ -83,6 +91,10 @@ const labelAlign = ref("start");
 ```
 
 :::
+
+### 表单校验
+
+通过`rules`设置表单校验规则，监听`submit`事件进行表单提交
 
 :::demo
 

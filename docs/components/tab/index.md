@@ -1,5 +1,7 @@
 # tabs
 
+### 基本用法
+
 :::demo
 
 ```vue
@@ -18,6 +20,10 @@ const activeTab = ref("tab1");
 ```
 
 :::
+
+### 动态增减标签页
+
+使用`closable`,`addable`来设置动态增减
 
 :::demo
 
