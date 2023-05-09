@@ -1,5 +1,8 @@
 # 树
 
+## 基本用法
+
+通过`data`属性设置数据
 :::demo
 
 ```vue
@@ -64,6 +67,10 @@ const data = ref([
 ```
 
 :::
+
+## 基本用法
+
+通过`checkable`属性设置是否可勾选
 
 :::demo
 
@@ -130,6 +137,10 @@ const data = ref([
 ```
 
 :::
+
+## 内容插槽
+
+通过`content`插槽自定义显示内容
 
 :::demo
 
@@ -242,6 +253,10 @@ const data = ref([
 
 :::
 
+### 操作节点
+
+设置`operable`，显示条目的操作按钮
+
 :::demo
 
 ```vue
@@ -271,6 +286,10 @@ const data = ref([
 ```
 
 :::
+
+### 节点懒加载
+
+通过`lazy-load`事件来进行节点内容懒加载
 
 :::demo
 
