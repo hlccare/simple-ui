@@ -46,6 +46,7 @@ const sidebar = {
 };
 const config = {
   title: "simple-ui",
+  base: "/simple-ui-website/",
   themeConfig: {
     sidebar,
   },
