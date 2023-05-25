@@ -11,7 +11,7 @@ export const useCheck = (
     node.checked = !node.checked;
     // 父子联动
     // 更新子节点选中状态与父节点一致
-    core.getChildren(node).forEach((child) => {
+    core.getChildren(node, true).forEach((child) => {
       child.checked = node.checked;
     });
     // 子父联动

@@ -14,7 +14,7 @@ export const useCore = (innerData: Ref<IInnerTreeNode[]>): IUseCore => {
         continue;
       }
       if (!item.expanded) {
-        excludedNodes = [...excludedNodes, ...getChildren(item)];
+        excludedNodes = [...excludedNodes, ...getChildren(item, true)];
       }
       result.push(item);
     }
