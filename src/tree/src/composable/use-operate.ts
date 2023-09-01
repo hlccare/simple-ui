@@ -18,6 +18,9 @@ export const useOperate = (
     // parent节点设置展开，且非叶子节点
     parent.expanded = true;
     parent.isLeaf = false;
+    parent.childNodeCount = parent.childNodeCount
+      ? parent.childNodeCount + 1
+      : 1;
 
     // 新增节点初始化
     const currentNode = ref({
