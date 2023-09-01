@@ -12,6 +12,7 @@ import DemoBlock from "vitepress-theme-demoblock/components/DemoBlock.vue";
 import button from "../../../src/button/src/button";
 import tree from "../../../src/tree/src/tree";
 import pagination from "../../../src/pagination/src/pagination";
+import virtualList from "../../../src/virtual-list/src/virtual-list";
 //导入组件库
 import SimpleUI from "../../../scripts/entry";
 import "../../../src/index.scss";
@@ -29,5 +30,6 @@ export default {
     app.component("SButton", button);
     app.component("STree", tree);
     app.component("SPagination", pagination);
+    app.component("SVirtualList", virtualList);
   },
 };

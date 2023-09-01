@@ -39,9 +39,12 @@ const sidebar = {
           text: "Tree 树",
           link: "/components/tree/",
         },
+        {
+          text: "VirtualList 虚拟列表",
+          link: "/components/virtual-list/",
+        },
       ],
     },
-    { text: "布局", items: [] },
   ],
 };
 const config = {
