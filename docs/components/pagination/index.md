@@ -7,7 +7,7 @@
 
 ```vue
 <template>
-  <s-pagination :total="50"></s-pagination>
+  <s-pagination :total="100"></s-pagination>
 </template>
 ```
 

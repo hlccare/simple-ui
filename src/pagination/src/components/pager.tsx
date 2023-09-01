@@ -56,11 +56,12 @@ export default defineComponent({
           </li>
         ))}
 
-        {totalPage > pagerCount && pageIndex < Math.ceil(pagerCount / 2) + 1 && (
-          <li class="more right" onClick={() => jumpPage(5)}>
-            ...
-          </li>
-        )}
+        {totalPage > pagerCount &&
+          pageIndex < totalPage - Math.floor(pagerCount / 2) && (
+            <li class="more right" onClick={() => jumpPage(5)}>
+              ...
+            </li>
+          )}
         {totalPage > 1 && (
           <li
             onClick={() => setPageIndex(totalPage)}
